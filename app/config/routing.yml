@@ -1,0 +1,3 @@
+project_symfony:
+    resource: "@ProjectSymfonyBundle/Resources/config/routing.yml"
+    prefix:   /products

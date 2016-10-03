@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('@ProjectSymfonyBundle:css/products.css') }}">
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div>
+            <div class="inner cover">
+                <h1>Products list</h1>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Description</th>
+                            <th>Brandid</th>
+                            <th>Categoryid</th>
+                            <th>Price</th>
+                            <th>Id</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for product in products %}
+                        <tr>
+                            <td><a href="{{ path('products_show', { 'id': product.id }) }}">{{ product.code }}</a></td>
+                            <td>{{ product.description }}</td>
+                            <td>{{ product.brandId }}</td>
+                            <td>{{ product.categoryId }}</td>
+                            <td>{{ product.price }}</td>
+                            <td>{{ product.id }}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('products_show', { 'id': product.id }) }}">show</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('products_edit', { 'id': product.id }) }}">edit</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <ul>
+                    <li>
+                        <a href="{{ path('products_new') }}">Create a new entry</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
