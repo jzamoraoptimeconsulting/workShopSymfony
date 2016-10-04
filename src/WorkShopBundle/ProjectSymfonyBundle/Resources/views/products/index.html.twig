@@ -4,7 +4,7 @@
 {% block bodyContent %}
     <div class="button backgroundGreen">
         <span class="glyphicon glyphicon-plus"></span>
-        <a href="{{ path('products_new') }}">Nuevo producto</a>
+        <a id="createProductLink" href="{{ path('products_new') }}">Nuevo producto</a>
     </div>
     <div class="inner cover tableContainer">
         <table>
@@ -34,11 +34,11 @@
                         <div class="buttonsTableContainer">
                             <div class="button backgroundBlue">
                                 <span class="glyphicon glyphicon glyphicon-pencil"></span>
-                                <a href="{{ path('products_edit', { 'id': product.id }) }}">Editar</a>
+                                <a id="editProductLink" href="{{ path('products_edit', { 'id': product.id }) }}">Editar</a>
                             </div>
                             <div class="button backgroundOrange">
                                 <span class="glyphicon glyphicon-minus"></span>
-                                <a href="{{ path('products_edit', { 'id': product.id }) }}">Eliminar</a>
+                                <a id="deleteProductLink" href="{{ path('products_delete', { 'id': product.id }) }}">Eliminar</a>
                             </div>
                         </div>
                     </td>

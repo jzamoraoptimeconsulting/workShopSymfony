@@ -21,4 +21,4 @@ products_edit:
 products_delete:
     path:     /{id}/delete
     defaults: { _controller: "ProjectSymfonyBundle:Products:delete" }
-    methods:  DELETE
+    methods:  [GET, POST, DELETE]

@@ -1,4 +1,8 @@
+
 <?php
+
+
+    /*
 
 namespace WorkShopBundle\ProjectSymfonyBundle\Tests\Controller;
 
@@ -6,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
 {
+    /*
     public function testIndex()
     {
         $client = static::createClient();
@@ -14,4 +19,7 @@ class DefaultControllerTest extends WebTestCase
 
         $this->assertContains('Hello World', $client->getResponse()->getContent());
     }
+
 }
+    */
+?>

@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use WorkShopBundle\ProjectSymfonyBundle\Entity\Products;
-use WorkShopBundle\ProjectSymfonyBundle\Form\ProductsType;
+use Symfony\Component\Form\FormError;
 
 /**
  * Products controller.
@@ -48,7 +48,19 @@ class ProductsController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($product);
-            $em->flush();
+
+            try{
+                $em->flush();
+            }catch(\Exception $e){
+                if(stripos($e->getMessage(),'duplicate entry')!==false){
+                    $form->get('code')->addError(new FormError('El nombre y el codigo no pueden repetirse con otros productos '));
+                }
+
+                return $this->render('ProjectSymfonyBundle::products/new.html.twig', array(
+                    'product' => $product,
+                    'form' => $form->createView(),
+                ));
+            }
 
             return $this->redirectToRoute('products_index');
         }
@@ -106,18 +118,17 @@ class ProductsController extends Controller
      * Deletes a Products entity.
      *
      * @Route("/{id}", name="products_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, Products $product)
     {
         $form = $this->createDeleteForm($product);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        //if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($product);
             $em->flush();
-        }
+        //}
 
         return $this->redirectToRoute('products_index');
     }

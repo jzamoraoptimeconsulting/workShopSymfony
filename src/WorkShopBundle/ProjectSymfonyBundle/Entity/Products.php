@@ -1,13 +1,18 @@
 <?php
 
 namespace WorkShopBundle\ProjectSymfonyBundle\Entity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Products
  *
- * @ORM\Table(name="products", uniqueConstraints={@ORM\UniqueConstraint(name="code", columns={"code"})}, indexes={@ORM\Index(name="category_id", columns={"category_id"}), @ORM\Index(name="brand_id", columns={"brand_id"})})
+ * @UniqueEntity("nombre")
+ * @UniqueEntity("code")
+ * @ORM\Table(name="products", uniqueConstraints={@ORM\UniqueConstraint(name="code", columns={"code"}), @ORM\UniqueConstraint(name="code_name", columns={"code, nombre"}) }, indexes={@ORM\Index(name="category_id", columns={"category_id"}), @ORM\Index(name="brand_id", columns={"brand_id"})})
  * @ORM\Entity
  */
 class Products
@@ -22,6 +27,9 @@ class Products
     private $id;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Regex("/^\w+/")
+     * @Assert\Length(min = 4, max = 100, minMessage = "El nombre debe tener minimo {{ limit }} caracteres", maxMessage = "El nombre debe tener maximo {{ limit }} caracteres")
      * @var string
      *
      * @ORM\Column(name="nombre", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
@@ -29,6 +37,9 @@ class Products
     private $nombre;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Regex("/^\w+/")
+     * @Assert\Length(min = 5, max = 100, minMessage = "La descripcion debe tener minimo {{ limit }} caracteres", maxMessage = "La descripcion debe tener maximo {{ limit }} caracteres")
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, precision=0, scale=0, nullable=true, unique=false)
@@ -36,6 +47,13 @@ class Products
     private $description;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Regex(
+     *     pattern="/^\w(\w)*(-{1})?(\w)*\w$/",
+     *     match=true,
+     *     message="Ingrese una cadena de texto sin caracteres especiales ni espacios"
+     * )
+     * @Assert\Length(min = 4, max = 10, minMessage = "El codigo debe tener minimo {{ limit }} caracteres", maxMessage = "El codigo debe tener maximo {{ limit }} caracteres")
      * @var string
      *
      * @ORM\Column(name="code", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
@@ -43,6 +61,9 @@ class Products
     private $code;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Type(message="El valor no es numerico", type="numeric" )
+     * @Assert\GreaterThan(message="Ingrese un valor  mayor a cero",value=0)
      * @var string
      *
      * @ORM\Column(name="price", type="decimal", precision=15, scale=2, nullable=false, unique=false)
