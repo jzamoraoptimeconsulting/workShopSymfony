@@ -1,56 +1,54 @@
 {% extends 'base.html.twig' %}
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('@ProjectSymfonyBundle:css/products.css') }}">
-{% endblock %}
-{% block body %}
-    <div class="container">
-        <div>
-            <div class="inner cover">
-                <h1>Products list</h1>
-
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Code</th>
-                            <th>Description</th>
-                            <th>Brandid</th>
-                            <th>Categoryid</th>
-                            <th>Price</th>
-                            <th>Id</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for product in products %}
-                        <tr>
-                            <td><a href="{{ path('products_show', { 'id': product.id }) }}">{{ product.code }}</a></td>
-                            <td>{{ product.description }}</td>
-                            <td>{{ product.brandId }}</td>
-                            <td>{{ product.categoryId }}</td>
-                            <td>{{ product.price }}</td>
-                            <td>{{ product.id }}</td>
-                            <td>
-                                <ul>
-                                    <li>
-                                        <a href="{{ path('products_show', { 'id': product.id }) }}">show</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ path('products_edit', { 'id': product.id }) }}">edit</a>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-
-                <ul>
-                    <li>
-                        <a href="{{ path('products_new') }}">Create a new entry</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+{% block title %}Lista de productos{% endblock %}
+{% block headerContent %}Lista de productos{% endblock %}
+{% block bodyContent %}
+    <div class="button backgroundGreen">
+        <span class="glyphicon glyphicon-plus"></span>
+        <a href="{{ path('products_new') }}">Nuevo producto</a>
     </div>
+    <div class="inner cover tableContainer">
+        <table>
+            <thead>
+                <tr>
+                    <th class="backgroundGreen">Id</th>
+                    <th class="backgroundGreen">Nombre</th>
+                    <th class="backgroundGreen">Descripcion</th>
+                    <th class="backgroundGreen">Codigo</th>
+                    <th class="backgroundGreen">Categoria</th>
+                    <th class="backgroundGreen">Linea</th>
+                    <th class="backgroundGreen">Precio</th>
+                    <th class="backgroundGreen">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.nombre }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.code }}</td>
+                    <td>{{ product.category }}</td>
+                    <td>{{ product.brand }}</td>
+                    <td>{{ product.price }}</td>
+                    <td class="tdCenter">
+                        <div class="buttonsTableContainer">
+                            <div class="button backgroundBlue">
+                                <span class="glyphicon glyphicon glyphicon-pencil"></span>
+                                <a href="{{ path('products_edit', { 'id': product.id }) }}">Editar</a>
+                            </div>
+                            <div class="button backgroundOrange">
+                                <span class="glyphicon glyphicon-minus"></span>
+                                <a href="{{ path('products_edit', { 'id': product.id }) }}">Eliminar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/lib/jquery/jquery-ui/jquery-ui.min.js') }}" type="text/javascript"></script>
 {% endblock %}

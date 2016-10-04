@@ -1,3 +1,32 @@
-.formCenterVerticalCenterHorizontal{
-
+.header{
+    color: white;
+    line-height: 60px;
+    margin: 0;
+    margin-left: 15px;
 }
+
+
+/*
+.formCenterVerticalCenterHorizontal{
+    position: absolute;
+    left: 50%;
+    margin-left: -400px;
+    width: 800px;
+    top: 50%;
+    margin-top: -250px;
+    height: 500px;
+}
+
+.gray-clearly{
+    background: #f7f7f7;
+}
+
+.border-radius25{
+    border-radius: 25px;
+}
+
+.padding30{
+    padding: 30px;
+}
+
+*/

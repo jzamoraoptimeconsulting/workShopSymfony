@@ -1,3 +1,11 @@
+project_symfony_products:
+    resource: "@ProjectSymfonyBundle/Controller/ProductsController.php"
+    type:     annotation
+
+project_symfony_products:
+    resource: "@ProjectSymfonyBundle/Controller/ProductsController.php"
+    type:     annotation
+
 project_symfony:
     resource: "@ProjectSymfonyBundle/Resources/config/routing.yml"
     prefix:   /products

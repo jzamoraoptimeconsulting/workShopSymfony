@@ -4,23 +4,26 @@ namespace WorkShopBundle\ProjectSymfonyBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use WorkShopBundle\ProjectSymfonyBundle\Entity\Products;
 use WorkShopBundle\ProjectSymfonyBundle\Form\ProductsType;
 
 /**
  * Products controller.
  *
+ * @Route("/products")
  */
 class ProductsController extends Controller
 {
     /**
      * Lists all Products entities.
      *
+     * @Route("/", name="products_index")
+     * @Method("GET")
      */
     public function indexAction()
     {
-
         $em = $this->getDoctrine()->getManager();
 
         $products = $em->getRepository('ProjectSymfonyBundle:Products')->findAll();
@@ -33,6 +36,8 @@ class ProductsController extends Controller
     /**
      * Creates a new Products entity.
      *
+     * @Route("/new", name="products_new")
+     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -45,10 +50,10 @@ class ProductsController extends Controller
             $em->persist($product);
             $em->flush();
 
-            return $this->redirectToRoute('products_show', array('id' => $product->getId()));
+            return $this->redirectToRoute('products_index');
         }
 
-        return $this->render('products/new.html.twig', array(
+        return $this->render('ProjectSymfonyBundle::products/new.html.twig', array(
             'product' => $product,
             'form' => $form->createView(),
         ));
@@ -57,6 +62,8 @@ class ProductsController extends Controller
     /**
      * Finds and displays a Products entity.
      *
+     * @Route("/{id}", name="products_show")
+     * @Method("GET")
      */
     public function showAction(Products $product)
     {
@@ -71,6 +78,8 @@ class ProductsController extends Controller
     /**
      * Displays a form to edit an existing Products entity.
      *
+     * @Route("/{id}/edit", name="products_edit")
+     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Products $product)
     {
@@ -83,7 +92,7 @@ class ProductsController extends Controller
             $em->persist($product);
             $em->flush();
 
-            return $this->redirectToRoute('products_edit', array('id' => $product->getId()));
+            return $this->redirectToRoute('products_index');
         }
 
         return $this->render('ProjectSymfonyBundle::products/edit.html.twig', array(
@@ -96,6 +105,8 @@ class ProductsController extends Controller
     /**
      * Deletes a Products entity.
      *
+     * @Route("/{id}", name="products_delete")
+     * @Method("DELETE")
      */
     public function deleteAction(Request $request, Products $product)
     {

@@ -7,78 +7,101 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Products
  *
- * @ORM\Table(name="products", uniqueConstraints={@ORM\UniqueConstraint(name="ak_code", columns={"code"})}, indexes={@ORM\Index(name="category_id", columns={"category_id"})})
+ * @ORM\Table(name="products", uniqueConstraints={@ORM\UniqueConstraint(name="code", columns={"code"})}, indexes={@ORM\Index(name="category_id", columns={"category_id"}), @ORM\Index(name="brand_id", columns={"brand_id"})})
  * @ORM\Entity
  */
 class Products
 {
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="code", type="string", length=255, nullable=true)
+     * @ORM\Column(name="id", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $code;
+    private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     * @ORM\Column(name="nombre", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255, precision=0, scale=0, nullable=true, unique=false)
      */
     private $description;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="brand_id", type="string", length=255, nullable=true)
+     * @ORM\Column(name="code", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
      */
-    private $brandId;
+    private $code;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="category_id", type="string", length=255, nullable=true)
-     */
-    private $categoryId;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="price", type="decimal", precision=15, scale=3, nullable=true)
+     * @ORM\Column(name="price", type="decimal", precision=15, scale=2, nullable=false, unique=false)
      */
     private $price;
 
     /**
-     * @var integer
+     * @var \WorkShopBundle\ProjectSymfonyBundle\Entity\Brand
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\ManyToOne(targetEntity="WorkShopBundle\ProjectSymfonyBundle\Entity\Brand")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="brand_id", referencedColumnName="id", nullable=true)
+     * })
      */
-    private $id;
+    private $brand;
+
+    /**
+     * @var \WorkShopBundle\ProjectSymfonyBundle\Entity\Category
+     *
+     * @ORM\ManyToOne(targetEntity="WorkShopBundle\ProjectSymfonyBundle\Entity\Category")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=true)
+     * })
+     */
+    private $category;
 
 
 
     /**
-     * Set code
+     * Get id
      *
-     * @param string $code
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nombre
+     *
+     * @param string $nombre
      * @return Products
      */
-    public function setCode($code)
+    public function setNombre($nombre)
     {
-        $this->code = $code;
+        $this->nombre = $nombre;
 
         return $this;
     }
 
     /**
-     * Get code
+     * Get nombre
      *
      * @return string 
      */
-    public function getCode()
+    public function getNombre()
     {
-        return $this->code;
+        return $this->nombre;
     }
 
     /**
@@ -105,49 +128,26 @@ class Products
     }
 
     /**
-     * Set brandId
+     * Set code
      *
-     * @param string $brandId
+     * @param string $code
      * @return Products
      */
-    public function setBrandId($brandId)
+    public function setCode($code)
     {
-        $this->brandId = $brandId;
+        $this->code = $code;
 
         return $this;
     }
 
     /**
-     * Get brandId
+     * Get code
      *
      * @return string 
      */
-    public function getBrandId()
+    public function getCode()
     {
-        return $this->brandId;
-    }
-
-    /**
-     * Set categoryId
-     *
-     * @param string $categoryId
-     * @return Products
-     */
-    public function setCategoryId($categoryId)
-    {
-        $this->categoryId = $categoryId;
-
-        return $this;
-    }
-
-    /**
-     * Get categoryId
-     *
-     * @return string 
-     */
-    public function getCategoryId()
-    {
-        return $this->categoryId;
+        return $this->code;
     }
 
     /**
@@ -174,12 +174,48 @@ class Products
     }
 
     /**
-     * Get id
+     * Set brand
      *
-     * @return integer 
+     * @param \WorkShopBundle\ProjectSymfonyBundle\Entity\Brand $brand
+     * @return Products
      */
-    public function getId()
+    public function setBrand(\WorkShopBundle\ProjectSymfonyBundle\Entity\Brand $brand = null)
     {
-        return $this->id;
+        $this->brand = $brand;
+
+        return $this;
+    }
+
+    /**
+     * Get brand
+     *
+     * @return \WorkShopBundle\ProjectSymfonyBundle\Entity\Brand 
+     */
+    public function getBrand()
+    {
+        return $this->brand;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \WorkShopBundle\ProjectSymfonyBundle\Entity\Category $category
+     * @return Products
+     */
+    public function setCategory(\WorkShopBundle\ProjectSymfonyBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \WorkShopBundle\ProjectSymfonyBundle\Entity\Category 
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }
