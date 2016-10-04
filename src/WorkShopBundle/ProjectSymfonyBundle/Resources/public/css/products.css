@@ -1,32 +1,185 @@
+.backgroundBlue{
+    background: #37b3e4;
+}
+
+.backgroundGreen{
+    background: #3fca9a;
+}
+
+.backgroundGreenHighLight{
+    background: #91d6be!important;
+}
+
+.backgroundOrange{
+    background: #ff753e;
+}
+
+.tdCenter{
+    text-align: center!important;
+    vertical-align: middle!important;
+}
+
+
 .header{
+    background: #000000;
+    float: left;
+    width: 100%;
+}
+
+.header h1{
     color: white;
     line-height: 60px;
     margin: 0;
     margin-left: 15px;
 }
 
+.container{
+    clear: both;
+    padding-top: 50px;
+}
 
-/*
-.formCenterVerticalCenterHorizontal{
-    position: absolute;
+
+.tableContainer{
+
+}
+
+.button{
+    float: left;
+    padding: 9px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.button a{
+    color:inherit;
+}
+
+.button a{
+    color:inherit;
+}
+
+.button a:visited{
+    color:inherit;
+}
+
+.button a:hover{
+    text-decoration: none!important;
+}
+
+.tableContainer table{
+    width: 100%;
+}
+
+.tableContainer table thead tr th{
+    text-align: center;
+    color: white;
+    border-right:1px solid white;
+    padding: 7px 0;
+
+}
+
+.tableContainer table tbody tr:hover{
+    color: white;
+    background: #91d6be!important;
+}
+
+.tableContainer table thead tr th:first-child{
+    border-radius:8px 0 0 0;
+}
+
+.tableContainer table thead tr th:last-child{
+    border-radius:0 8px 0 0;
+    border-right:none;
+}
+
+.tableContainer table tbody tr:nth-child(even){
+    background: white;
+}
+
+.tableContainer table tbody tr:nth-child(odd){
+    background: #f1f1f1;
+}
+
+.tableContainer table tbody tr td{
+    text-align: center;
+    border-right: 1px solid #e8e8e8;
+    border-top: none;
+    border-bottom: none;
+    border-left: 1px solid #ececec;
+}
+
+.tableContainer table tbody tr td .button{
+    margin: 5px 3px 0 0;
+    padding: 3px 10px;
+}
+
+.tableContainer table tbody tr td:last-child{
+    border-right: 1px solid #ececec;
+}
+
+.tableContainer table tbody tr:last-child td{
+    border-bottom: 1px solid #ececec;
+}
+
+.buttonsTableContainer{
+    display: inline-block;
+    margin: 2px;
+}
+
+.formContainer{
+    clear: both;
+    text-align: center;
+}
+
+.centerContent{
+    width:100%;
+    height:50px;
+}
+.centerContent>div{
+    width:400px;
+    display: inline-block;
+}
+
+
+.formContainer #products{
+    width: 400px;
+    display: inline-block;
+    background: #37b3e4;
+    border-radius: 12px;
+    color: white;
+    border: solid #c3c3c3 1px;
+    padding: 20px;
+}
+
+.formContainer #products>div{
+    margin:5px 0;
+}
+
+.formContainer #products>div>label{
+    width:100px;
+    text-align: left;
+}
+
+.formContainer #products>div>input,.formContainer #products>div>select{
+    width:200px;
+    text-align: left;
+    border:none;
+    height:30px;
+    color:#000;
+    padding-left:5px;
+}
+
+.formContainer form>input{
+    display: block;
+    width: 400px;
+    background: #ff753e;
+    border: none;
+    padding: 12px;
+    color: white;
+    position: relative;
     left: 50%;
-    margin-left: -400px;
-    width: 800px;
-    top: 50%;
-    margin-top: -250px;
-    height: 500px;
+    margin-left: -200px;
+    margin-top: 20px;
+    border-radius: 12px;
 }
-
-.gray-clearly{
-    background: #f7f7f7;
-}
-
-.border-radius25{
-    border-radius: 25px;
-}
-
-.padding30{
-    padding: 30px;
-}
-
-*/
