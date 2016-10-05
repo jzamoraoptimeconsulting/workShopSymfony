@@ -34,11 +34,11 @@
                         <div class="buttonsTableContainer">
                             <div class="button backgroundBlue">
                                 <span class="glyphicon glyphicon glyphicon-pencil"></span>
-                                <a id="editProductLink" href="{{ path('products_edit', { 'id': product.id }) }}">Editar</a>
+                                <a class="editProductLink" href="{{ path('products_edit', { 'id': product.id }) }}">Editar</a>
                             </div>
                             <div class="button backgroundOrange">
                                 <span class="glyphicon glyphicon-minus"></span>
-                                <a id="deleteProductLink" href="{{ path('products_delete', { 'id': product.id }) }}">Eliminar</a>
+                                <a class="deleteProductLink confirm" href="{{ path('products_delete', { 'id': product.id }) }}">Eliminar</a>
                             </div>
                         </div>
                     </td>
@@ -47,8 +47,21 @@
             </tbody>
         </table>
     </div>
+    <div id="dialog">
+        <div class="buttonsTableContainer">
+            <span class="spanDialog">¿Esta seguro que quiere eliminar este registro permanentemente?</span>
+            <div class="button backgroundBlue">
+                <span class="glyphicon glyphicon-triangle-left"></span>
+                <a class="editProductLink" href="#" onclick="return false;">Cancelar</a>
+            </div>
+            <div class="button backgroundOrange">
+                <span class="glyphicon glyphicon-minus"></span>
+                <a class="deleteProductLink" href="#" onclick="return false;">Eliminar</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('bundles/projectsymfony/js/products.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/projectsymfony/js/products.js') }}"></script>
 {% endblock %}

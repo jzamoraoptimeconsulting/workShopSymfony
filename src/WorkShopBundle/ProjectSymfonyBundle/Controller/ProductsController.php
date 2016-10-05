@@ -124,7 +124,7 @@ class ProductsController extends Controller
         $form = $this->createDeleteForm($product);
         $form->handleRequest($request);
 
-        //if ($form->isSubmitted() && $form->isValid()) {
+       // if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($product);
             $em->flush();

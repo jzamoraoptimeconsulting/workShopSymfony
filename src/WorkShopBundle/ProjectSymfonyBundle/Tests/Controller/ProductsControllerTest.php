@@ -38,7 +38,7 @@ class ProductsControllerTest extends WebTestCase
         $this->assertGreaterThan(0, $crawler->filter('table tbody tr td:contains("Nombre de un test")')->count(), 'No se encuentra el elemento');
 
         // Edit the entity
-        $crawler = $client->click($crawler->filter('table tbody tr td:contains("Nombre de un test")')->parents()->filter(':last-child')->filter("#editProductLink")->link());
+        $crawler = $client->click($crawler->filter('table tbody tr td:contains("Nombre de un test")')->parents()->filter(':last-child')->filter(".editProductLink")->link());
 
         $form = $crawler->filter("input[type='submit']")->form(array(
             'products[nombre]'  => 'Nombre de un test modificado',
@@ -59,7 +59,7 @@ class ProductsControllerTest extends WebTestCase
 
         //die(var_dump($element));
         // Delete the entity
-        $crawler = $client->click($crawler->filter('table tbody tr td:contains("Nombre de un test modificado")')->parents()->filter(':last-child')->filter("#deleteProductLink")->link());
+        $crawler = $client->click($crawler->filter('table tbody tr td:contains("Nombre de un test modificado")')->parents()->filter(':last-child')->filter(".deleteProductLink")->link());
         $crawler = $client->followRedirect();
 
         // Check the entity has been delete on the list

@@ -6,6 +6,8 @@
          backupGlobals="false"
          colors="true"
          bootstrap="autoload.php"
+         verbose="true"
+         debud="true"
 >
     <php>
         <ini name="error_reporting" value="-1" />
