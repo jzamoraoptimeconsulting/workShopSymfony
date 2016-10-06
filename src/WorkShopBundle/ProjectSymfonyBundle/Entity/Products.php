@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @UniqueEntity("nombre")
  * @UniqueEntity("code")
- * @ORM\Table(name="products", uniqueConstraints={@ORM\UniqueConstraint(name="code", columns={"code"}), @ORM\UniqueConstraint(name="code_name", columns={"code, nombre"}) }, indexes={@ORM\Index(name="category_id", columns={"category_id"}), @ORM\Index(name="brand_id", columns={"brand_id"})})
+ * @ORM\Table(name="products", uniqueConstraints={@ORM\UniqueConstraint(name="code", columns={"code"}), @ORM\UniqueConstraint(name="code_name", columns={"code", "nombre"}) }, indexes={@ORM\Index(name="category_id", columns={"category_id"}), @ORM\Index(name="brand_id", columns={"brand_id"})})
  * @ORM\Entity
  */
 class Products
